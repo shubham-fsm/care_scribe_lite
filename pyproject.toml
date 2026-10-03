@@ -1,0 +1,18 @@
+[project]
+name = "scribe_lite"
+version = "0.1.0"
+description = "CARE plugin: fill encounter forms from the doctor's voice (Gemini)"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = ["django", "djangorestframework", "requests"]
+requires-python = ">= 3.10"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
