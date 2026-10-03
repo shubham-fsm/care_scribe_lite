@@ -116,13 +116,14 @@ def fill_form(audio: bytes, mime_type: str, questions: list[dict]) -> dict:
             {
                 "role": "user",
                 "parts": [
-                    {"text": PROMPT.format(questions=json.dumps(questions, ensure_ascii=False))},
                     {"inline_data": {"mime_type": mime_type, "data": base64.b64encode(audio).decode()}},
+                    {"text": PROMPT.format(questions=json.dumps(questions, ensure_ascii=False))},
                 ],
             }
         ],
+        # Gemini 3+ models reject sampling settings such as temperature.
         "generationConfig": {
-            "temperature": 0,
+            "thinkingConfig": {"thinkingLevel": plugin_settings.get("GEMINI_THINKING_LEVEL")},
             "responseMimeType": "application/json",
             "responseSchema": RESPONSE_SCHEMA,
         },
@@ -139,7 +140,9 @@ def fill_form(audio: bytes, mime_type: str, questions: list[dict]) -> dict:
     if response.status_code != 200:
         raise ScribeError(f"Gemini returned {response.status_code}: {response.text[:300]}")
     try:
-        text = response.json()["candidates"][0]["content"]["parts"][0]["text"]
+        parts = response.json()["candidates"][0]["content"]["parts"]
+        # Skip thought parts; the answer is the remaining text.
+        text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
         return json.loads(text)
     except (KeyError, IndexError, ValueError) as e:
         raise ScribeError("Gemini returned an unexpected response") from e

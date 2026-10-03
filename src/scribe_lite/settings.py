@@ -9,7 +9,9 @@ from scribe_lite.apps import PLUGIN_NAME
 DEFAULTS = {
     # Google AI Studio key. Never sent to the browser.
     "GEMINI_API_KEY": "",
-    "GEMINI_MODEL": "gemini-2.5-flash",
+    "GEMINI_MODEL": "gemini-3.8-flash",
+    # low keeps the doctor waiting less; medium/high think longer.
+    "GEMINI_THINKING_LEVEL": "low",
     # Return a fixed sample answer instead of calling Gemini (for demos/tests).
     "SCRIBE_MOCK": False,
     "MAX_AUDIO_MB": 15,

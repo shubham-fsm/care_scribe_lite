@@ -29,7 +29,8 @@ Set in `PLUGIN_CONFIGS["scribe_lite"]` (plug_config.py) or as environment variab
 | Setting | Default | |
 |---|---|---|
 | `GEMINI_API_KEY` | (none) | Google AI Studio key. Required unless mock mode is on. |
-| `GEMINI_MODEL` | `gemini-2.5-flash` | |
+| `GEMINI_MODEL` | `gemini-3.8-flash` | |
+| `GEMINI_THINKING_LEVEL` | `low` | `low`, `medium` or `high` |
 | `SCRIBE_MOCK` | `false` | Return a fixed sample answer without calling Gemini (demos, tests). |
 | `MAX_AUDIO_MB` | `15` | |
 | `REQUEST_TIMEOUT_SECONDS` | `90` | |
