@@ -29,11 +29,14 @@ Set in `PLUGIN_CONFIGS["scribe_lite"]` (plug_config.py) or as environment variab
 | Setting | Default | |
 |---|---|---|
 | `GEMINI_API_KEY` | (none) | Google AI Studio key. Required unless mock mode is on. |
+| `GEMINI_FALLBACK_MODELS` | (none) | Comma-separated models to try when `GEMINI_MODEL` is overloaded (503/429/timeout). |
+| `GEMINI_ATTEMPTS_PER_MODEL` | `2` | Tries on `GEMINI_MODEL` before the fallbacks. |
+| `REQUEST_TIMEOUT_SECONDS` | `40` | Wait for one Gemini call. |
+| `TOTAL_TIMEOUT_SECONDS` | `100` | Wait for all calls together, retries included. |
 | `GEMINI_MODEL` | `gemini-3.8-flash` | |
 | `GEMINI_THINKING_LEVEL` | `low` | `low`, `medium` or `high` |
 | `SCRIBE_MOCK` | `false` | Return a fixed sample answer without calling Gemini (demos, tests). |
 | `MAX_AUDIO_MB` | `15` | |
-| `REQUEST_TIMEOUT_SECONDS` | `90` | |
 
 ## Install (local Docker setup)
 

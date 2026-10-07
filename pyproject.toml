@@ -1,6 +1,6 @@
 [project]
 name = "scribe_lite"
-version = "0.1.0"
+version = "0.1.1"
 description = "CARE plugin: fill encounter forms from the doctor's voice (Gemini)"
 readme = "README.md"
 license = { text = "MIT" }
